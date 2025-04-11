@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T">
+<script setup lang="ts" generic="T extends { id: string }">
 import {
   FlexRender,
   getCoreRowModel,
@@ -6,6 +6,7 @@ import {
   type ColumnDef,
 } from "@tanstack/vue-table";
 import { computed } from "vue";
+import { useRouter } from "vue-router";
 
 const props = defineProps<{
   data: T[];
@@ -13,9 +14,12 @@ const props = defineProps<{
   page?: number;
   limit?: number;
   total?: number;
+  isRowLink?: boolean;
 }>();
 
 const emit = defineEmits(["update:page"]);
+
+const router = useRouter();
 
 const totalPages = computed(() =>
   props.total && props.limit ? Math.ceil(props.total / props.limit) : 1
@@ -30,6 +34,12 @@ const table = useVueTable({
   },
   getCoreRowModel: getCoreRowModel(),
 });
+
+const linkTo = (id: string) => {
+  if (props.isRowLink && id) {
+    router.push(`/house-plans/${id}`);
+  }
+};
 </script>
 
 <template>
@@ -60,6 +70,7 @@ const table = useVueTable({
           v-for="row in table.getRowModel().rows"
           :key="row.id"
           class="hover:bg-gray-50 transition"
+          @click="linkTo(row.original.id)"
         >
           <td
             v-for="cell in row.getVisibleCells()"

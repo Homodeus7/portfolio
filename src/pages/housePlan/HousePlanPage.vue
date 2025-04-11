@@ -10,7 +10,6 @@ import {
   useHouseQuery,
   useUpdateHouseMutation,
 } from "@pages/housePlan/api/useHousePlanQuery";
-
 import { AddRemoveButton, CalculationInput } from "@shared/components";
 import PageLayout from "@shared/layout/pageLayout/PageLayout.vue";
 import EntrancePlan from "@widgets/entrancePlan/EntrancePlan.vue";
@@ -213,7 +212,9 @@ const onRemoveEntrance = async () => {
             </div>
           </div>
           <div class="self-center">
-            <UButton type="submit" color="neutral"> Создать план </UButton>
+            <UButton type="submit" color="neutral">
+              {{ isEditMode ? "Сохранить" : "Создать план" }}</UButton
+            >
           </div>
         </div>
       </form>

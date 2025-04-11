@@ -1,17 +1,13 @@
 <script setup lang="ts">
 interface Props {
-  title?: string | unknown
-  hasTitleSlot?: boolean
-  disabled?: boolean
-  crumbList?: boolean
-  delete?: boolean
+  title?: string | unknown;
 }
 
-const props = defineProps<Props>()
+const props = defineProps<Props>();
 </script>
 
 <template>
-  <section class="p-10">
+  <section class="p-10 flex flex-col min-h-full">
     <!-- Заголовок -->
     <header
       v-if="props.title"
@@ -24,8 +20,13 @@ const props = defineProps<Props>()
       <!-- Слот с контентом -->
       <slot name="header-content" />
     </header>
-    <!-- Основной контент -->
-    <slot name="content" />
+
+    <!-- Контент -->
+    <div class="flex-1">
+      <slot name="content" />
+    </div>
+
+    <!-- Дополнительный слот -->
     <slot />
   </section>
 </template>
