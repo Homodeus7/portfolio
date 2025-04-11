@@ -43,9 +43,9 @@ const linkTo = (id: string) => {
 </script>
 
 <template>
-  <div class="overflow-x-auto border rounded-lg space-y-2">
-    <table class="min-w-full divide-y divide-gray-200">
-      <thead class="bg-gray-50">
+  <div class="overflow-x-auto border border-white/20 rounded-lg space-y-2">
+    <table class="min-w-full">
+      <thead class="border-b border-b-white/20">
         <tr
           v-for="headerGroup in table.getHeaderGroups()"
           :key="headerGroup.id"
@@ -65,17 +65,17 @@ const linkTo = (id: string) => {
           </th>
         </tr>
       </thead>
-      <tbody class="divide-y divide-gray-100">
+      <tbody class="divide-y divide-white/20">
         <tr
           v-for="row in table.getRowModel().rows"
           :key="row.id"
-          class="hover:bg-gray-50 transition"
+          class="hover:bg-white/10 transition group"
           @click="linkTo(row.original.id)"
         >
           <td
             v-for="cell in row.getVisibleCells()"
             :key="cell.id"
-            class="px-4 py-3 whitespace-nowrap text-sm text-gray-700"
+            class="px-4 py-3 whitespace-nowrap text-sm text-[#62748e] group-hover:text-white"
           >
             <FlexRender
               :render="cell.column.columnDef.cell"

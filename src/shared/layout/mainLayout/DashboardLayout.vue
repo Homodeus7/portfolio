@@ -29,17 +29,6 @@ onBeforeUnmount(() => {
   />
 
   <div class="min-h-screen w-full">
-    <!-- <header class="p-4 shadow md:hidden flex justify-between items-center">
-      <h1 class="text-xl font-bold">Dashboard</h1>
-      <button @click="isSidebarOpen = !isSidebarOpen" class="text-2xl">
-        <span class="i-lucide-menu" />
-      </button>
-    </header>
-    <header class="hidden md:block p-4 shadow border-b border-b-white/20">
-      <div class="flex md:ml-64 max-w-7xl mx-auto">
-        <h1 class="text-xl font-bold">Dashboard</h1>
-      </div>
-    </header> -->
     <header
       class="p-4 shadow border-b border-b-white/20 flex justify-between items-center md:justify-start"
     >
