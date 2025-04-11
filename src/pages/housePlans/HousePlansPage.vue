@@ -2,28 +2,36 @@
 import { useHousesQuery } from "@pages/housePlans/api/useHousePlansQuery";
 import { columns } from "@pages/housePlans/table/columns";
 import { BaseTable } from "@shared/components";
+import PageLayout from "@shared/layout/pageLayout/PageLayout.vue";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const page = ref(1);
 const limit = 10;
 const { data, isLoading } = useHousesQuery(page, limit);
 
+const linkToCreate = () => {
+  router.push(`/house-plans/create`);
+};
 </script>
 
 <template>
-  <div class="space-y-4">
-    <h1 class="text-xl font-bold">Планы домов</h1>
-
-    <BaseTable
-      v-if="data?.data"
-      :data="data.data"
-      :columns="columns"
-      :page="page"
-      :total="data.total"
-      :limit="limit"
-      is-row-link
-    />
-
-    <div v-else-if="isLoading" class="text-gray-500">Загрузка...</div>
-  </div>
+  <PageLayout title="Планы домов">
+    <template #header-content>
+      <UButton color="success" @click="linkToCreate">Создать</UButton>
+    </template>
+    <template #content>
+      <BaseTable
+        v-if="data?.data"
+        :data="data.data"
+        :columns="columns"
+        :page="page"
+        :total="data.total"
+        :limit="limit"
+        is-row-link
+      />
+      <div v-else-if="isLoading" class="text-gray-500">Загрузка...</div>
+    </template>
+  </PageLayout>
 </template>
