@@ -4,6 +4,7 @@ import RegisterPage from "@pages/auth/RegisterPage.vue";
 import HomePage from "@pages/home/HomePage.vue";
 import HousePlanPage from "@pages/housePlan/HousePlanPage.vue";
 import HousePlansPage from "@pages/housePlans/HousePlansPage.vue";
+import NotFoundPage from "@pages/notFound/NotFoundPage.vue";
 import AuthLayout from "@shared/layout/mainLayout/AuthLayout.vue";
 import DashboardLayout from "@shared/layout/mainLayout/DashboardLayout.vue";
 import { createRouter, createWebHistory } from "vue-router";
@@ -55,6 +56,11 @@ const routes = [
         meta: { requiresAuth: true },
       },
     ],
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    component: NotFoundPage,
+    meta: { isPublic: true },
   },
 ];
 
