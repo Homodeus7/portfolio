@@ -3,13 +3,14 @@ import {
   addEntrance,
   removeEntrance,
 } from "@features/entrances/composables/entrancesUtils";
+import type { EntranceModel } from "@features/entrances/types/EntrancesModel";
 import {
   useCreateHouseMutation,
   useDeleteHouseMutation,
   useHouseQuery,
   useUpdateHouseMutation,
-} from "@pages/housePlans/api/useHousePlansQuery";
-import type { Entrance } from "@pages/housePlans/types";
+} from "@pages/housePlan/api/useHousePlanQuery";
+
 import { AddRemoveButton, CalculationInput } from "@shared/components";
 import PageLayout from "@shared/layout/pageLayout/PageLayout.vue";
 import EntrancePlan from "@widgets/entrancePlan/EntrancePlan.vue";
@@ -23,7 +24,7 @@ const toast = useToast();
 const id = route.params.id as string | undefined;
 const isEditMode = !!id;
 
-const entrancesData = ref<Entrance[]>([
+const entrancesData = ref<EntranceModel[]>([
   {
     name: "",
     floors: 0,

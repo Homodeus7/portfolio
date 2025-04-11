@@ -1,4 +1,4 @@
-import type { Entrance } from "@pages/housePlans/types";
+import { EntranceModel } from "../types/EntrancesModel";
 
 /**
  * Добавление нового подъезда в массив подъездов.
@@ -7,9 +7,9 @@ import type { Entrance } from "@pages/housePlans/types";
  * @returns новый массив подъездов или сообщение об ошибке
  */
 export const addEntrance = (
-  entrancesData: Entrance[],
+  entrancesData: EntranceModel[],
   maxItems: number = 20
-): { updatedEntrances: Entrance[]; error?: string } => {
+): { updatedEntrances: EntranceModel[]; error?: string } => {
   if (entrancesData.length >= maxItems) {
     return {
       updatedEntrances: entrancesData,
@@ -17,7 +17,7 @@ export const addEntrance = (
     };
   }
 
-  const newEntrance: Entrance = {
+  const newEntrance: EntranceModel = {
     name: "",
     floors: 0,
     premises: 0,
@@ -35,9 +35,9 @@ export const addEntrance = (
  * @returns новый массив подъездов или сообщение об ошибке
  */
 export const removeEntrance = (
-  entrancesData: Entrance[],
+  entrancesData: EntranceModel[],
   deleteIndex: number
-): { updatedEntrances: Entrance[]; error?: string } => {
+): { updatedEntrances: EntranceModel[]; error?: string } => {
   if (entrancesData.length === 1) {
     return {
       updatedEntrances: entrancesData,

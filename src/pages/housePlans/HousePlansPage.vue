@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import type { HousePlanModel } from "@pages/housePlan/types/HousePlanModel";
 import { useHousesQuery } from "@pages/housePlans/api/useHousePlansQuery";
-import type { HousePlan } from "@pages/housePlans/types";
 import { BaseTable } from "@shared/components";
 import type { ColumnDef } from "@tanstack/vue-table";
 import { ref } from "vue";
@@ -9,7 +9,7 @@ const page = ref(1);
 const limit = 10;
 const { data, isLoading } = useHousesQuery(page, limit);
 
-const columns: ColumnDef<HousePlan>[] = [
+const columns: ColumnDef<HousePlanModel>[] = [
   {
     accessorKey: "name",
     header: "Название",
