@@ -1,12 +1,10 @@
 import { supabase } from "@app/api/supabase";
-import LoginPage from "@pages/auth/LoginPage.vue";
-import RegisterPage from "@pages/auth/RegisterPage.vue";
-import HomePage from "@pages/home/HomePage.vue";
-import HousePlanPage from "@pages/housePlan/HousePlanPage.vue";
-import HousePlansPage from "@pages/housePlans/HousePlansPage.vue";
-import NotFoundPage from "@pages/notFound/NotFoundPage.vue";
-import AuthLayout from "@shared/layout/mainLayout/AuthLayout.vue";
-import DashboardLayout from "@shared/layout/mainLayout/DashboardLayout.vue";
+import { LoginPage, RegisterPage } from "@pages/auth";
+import { HomePage } from "@pages/home";
+import { HousePlanPage } from "@pages/housePlan";
+import { HousePlansPage } from "@pages/housePlans";
+import { NotFoundPage } from "@pages/notFound";
+import { AuthLayout, DashboardLayout } from "@shared/layout";
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [

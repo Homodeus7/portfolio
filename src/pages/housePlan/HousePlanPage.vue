@@ -11,7 +11,7 @@ import {
   useUpdateHouseMutation,
 } from "@pages/housePlan/api/useHousePlanQuery";
 import { AddRemoveButton, CalculationInput } from "@shared/components";
-import PageLayout from "@shared/layout/pageLayout/PageLayout.vue";
+import { PageLayout } from "@shared/layout";
 import EntrancePlan from "@widgets/entrancePlan/EntrancePlan.vue";
 import { ref, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";
