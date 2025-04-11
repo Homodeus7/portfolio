@@ -69,7 +69,7 @@ watch(apartmentNumbers, (floors) => {
               :key="`apt-${floorIndex}-${unitIndex}`"
             >
               <div
-                class="bg-[#41b883] w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-sm cursor-pointer"
+                class="bg-[#41b883] w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-sm"
               >
                 {{ apartment }}
               </div>

@@ -7,7 +7,7 @@ const props = defineProps<Props>();
 </script>
 
 <template>
-  <section class="p-10 pr-48 flex flex-col min-h-full">
+  <section class="flex flex-col min-h-full">
     <!-- Заголовок -->
     <header
       v-if="props.title"
