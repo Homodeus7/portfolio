@@ -10,7 +10,11 @@ import {
   useHouseQuery,
   useUpdateHouseMutation,
 } from "@pages/housePlan/api/useHousePlanQuery";
-import { AddRemoveButton, CalculationInput } from "@shared/components";
+import {
+  AddRemoveButton,
+  BaseModal,
+  CalculationInput,
+} from "@shared/components";
 import { PageLayout } from "@shared/layout";
 import EntrancePlan from "@widgets/entrancePlan/EntrancePlan.vue";
 import { ref, watchEffect } from "vue";
@@ -22,6 +26,7 @@ const toast = useToast();
 
 const id = route.params.id as string | undefined;
 const isEditMode = !!id;
+const isVisibleModalDeletePlan = ref(false);
 
 const entrancesData = ref<EntranceModel[]>([
   {
@@ -132,7 +137,7 @@ const clickSave = async () => {
     });
   }
 };
-const onRemoveEntrance = async () => {
+const onRemoveHousePlan = async () => {
   if (!isEditMode || !id) return;
   try {
     await deleteHouse({ id: id });
@@ -150,13 +155,21 @@ const onRemoveEntrance = async () => {
     });
   }
 };
+
+function handleSubmit() {
+  onRemoveHousePlan();
+  isVisibleModalDeletePlan.value = false;
+}
 </script>
 
 <template>
   <PageLayout :title="`План дома ${houseName}`">
     <template #header-content>
       <div v-if="isEditMode">
-        <UButton color="error" variant="subtle" @click="onRemoveEntrance"
+        <UButton
+          color="error"
+          variant="subtle"
+          @click="isVisibleModalDeletePlan = true"
           >Удалить</UButton
         >
       </div>
@@ -214,7 +227,7 @@ const onRemoveEntrance = async () => {
             </div>
           </div>
 
-          <div class="flex flex-wrapgap-6 gap-12">
+          <div class="flex gap-12 flex-wrap">
             <div v-for="(entrance, index) in entrancesData" :key="index">
               <EntrancePlan
                 :floors="entrance.floors"
@@ -236,4 +249,17 @@ const onRemoveEntrance = async () => {
       </form>
     </template>
   </PageLayout>
+
+  <!-- Modals -->
+  <BaseModal
+    v-model:open="isVisibleModalDeletePlan"
+    @on-action="handleSubmit"
+    :title="`Удалить план дома${houseName ? ' ' + houseName : ''}?`"
+    description="Это действие нельзя отменить"
+    actionBtnName="Удалить"
+  >
+    <template #body>
+      <p>Вы уверены, что хотите удалить этот элемент?</p>
+    </template>
+  </BaseModal>
 </template>
