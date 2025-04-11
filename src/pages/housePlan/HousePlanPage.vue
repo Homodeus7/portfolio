@@ -39,10 +39,23 @@ const { mutateAsync: updateHouse } = useUpdateHouseMutation();
 const { mutateAsync: createHouse } = useCreateHouseMutation();
 const { mutateAsync: deleteHouse } = useDeleteHouseMutation();
 
+const setBuildingEntrance = (item: EntranceModel[]) => {
+  entrancesData.value = [];
+  item.forEach((entity) => {
+    entrancesData.value?.push({
+      name: entity.name,
+      floors: entity.floors,
+      premises: entity.premises,
+      firstApartmentNumber: entity.firstApartmentNumber,
+      lastApartmentNumber: entity.lastApartmentNumber,
+    });
+  });
+};
+
 watchEffect(() => {
   if (houseData.value && isEditMode) {
     houseName.value = houseData.value.name;
-    entrancesData.value = houseData.value.entrances ?? [];
+    setBuildingEntrance(houseData.value.entrances ?? []);
   }
 });
 
@@ -128,7 +141,7 @@ const onRemoveEntrance = async () => {
       description: "План дома удалён",
       color: "success",
     });
-    router.push("/houses");
+    router.push("/house-plans");
   } catch {
     toast.add({
       title: "Ошибка",
@@ -140,7 +153,14 @@ const onRemoveEntrance = async () => {
 </script>
 
 <template>
-  <PageLayout title="План дома" @remove="onRemoveEntrance">
+  <PageLayout :title="`План дома ${houseName}`">
+    <template #header-content>
+      <div v-if="isEditMode">
+        <UButton color="error" variant="subtle" @click="onRemoveEntrance"
+          >Удалить</UButton
+        >
+      </div>
+    </template>
     <template #content>
       <form @submit.prevent="clickSave">
         <div class="pt-6 w-full flex flex-col gap-[72px]">
@@ -167,7 +187,7 @@ const onRemoveEntrance = async () => {
               v-for="(entrance, index) in entrancesData"
               :key="(entrance.name, index)"
             >
-              <span class="w-[30px] text-[#52a9ff]">{{ index + 1 }}.</span>
+              <span class="w-[30px] text-gray-200">{{ index + 1 }}.</span>
               <div class="w-[250px]">
                 <UInput v-model="entrance.name" state="solid" color="primary" />
               </div>
@@ -179,7 +199,7 @@ const onRemoveEntrance = async () => {
               </div>
               <div class="w-[100px]">
                 <div class="flex items-center gap-4">
-                  <span class="text-[#52a9ff]">с </span>
+                  <span class="text-gray-200">с </span>
                   <UInput v-model.number="entrance.firstApartmentNumber" />
                 </div>
               </div>
@@ -194,12 +214,8 @@ const onRemoveEntrance = async () => {
             </div>
           </div>
 
-          <div class="flex flex-wrap gap-6">
-            <div
-              v-for="(entrance, index) in entrancesData"
-              :key="index"
-              class="flex justify-center gap-6"
-            >
+          <div class="flex flex-wrapgap-6 gap-12">
+            <div v-for="(entrance, index) in entrancesData" :key="index">
               <EntrancePlan
                 :floors="entrance.floors"
                 :premises="entrance.premises"
@@ -211,8 +227,8 @@ const onRemoveEntrance = async () => {
               />
             </div>
           </div>
-          <div class="self-center">
-            <UButton type="submit" color="neutral">
+          <div class="self-end">
+            <UButton type="submit" color="success" variant="subtle">
               {{ isEditMode ? "Сохранить" : "Создать план" }}</UButton
             >
           </div>
