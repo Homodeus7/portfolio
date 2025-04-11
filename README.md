@@ -1,22 +1,38 @@
-# Vue 3 + Vite + Nuxt UI 3
+## Название
 
-This template should help get you started developing with Vue 3, TypeScript, Vite and [Nuxt UI](https://ui.nuxt.com).
+Portfolio
 
-Online demo: https://nuxt-ui-vue-starter.pages.dev
+## Стэк
 
-[![nuxt ui with vue 3 only](https://github.com/user-attachments/assets/a81af231-b2aa-4753-86c1-2c8802196a4b)](https://nuxt-ui-vue-starter.pages.dev)
+Vue 3 + Vite + TypeScript + Nuxt UI 3 + Tanstack + Supabase
 
-## Recommended IDE Setup
+## Основная задача
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Показать стиль кода, модульную архитектуру (FSD), реальные фичи
 
-## Type Support For `.vue` Imports in TS
+## Архитектура
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+FSD: Api / Pages / Widgets / Features / Shared
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## Основные фичи
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+1. 🏢 Конструктор плана дома (housePlan)
+
+   Назначение: интерфейс для создания подъездов и квартир
+   Ключевые компоненты: динамические расчеты, плавная анимация
+
+2. 📅 Конструктор графиков (schedule)
+
+   Назначение: Поддержка сменных и «по дням недели» графиков
+   Динамический рендеринг по типу графика
+
+3. Аутентификация и права доступа
+
+   Supabase Auth
+
+4. Стиль кода и подходы
+
+   TypeScript + валидация через Zod
+   Разделение логики (api / query / формы)
+   Использование composables (useAuth, useHousePlan и т.д.)
+   VueUse + TanStack Query/Table

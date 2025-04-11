@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { supabase } from "@app/api/supabase";
 import {
   addEntrance,
   removeEntrance,
@@ -89,17 +88,12 @@ const clickSave = async () => {
     });
     return;
   }
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
 
   const payload = {
     name: houseName.value,
     entrances: entrancesData.value,
-    user_id: user?.id,
   };
-  console.log("Creating house with payload:", payload);
-  console.log("Current session:", await supabase.auth.getSession());
+
   try {
     if (isEditMode) {
       await updateHouse({ id: id!, updates: payload });
@@ -115,7 +109,7 @@ const clickSave = async () => {
         description: "План создан",
         color: "success",
       });
-      router.push("/houses");
+      router.push("/house-plans");
     }
   } catch (e) {
     toast.add({
