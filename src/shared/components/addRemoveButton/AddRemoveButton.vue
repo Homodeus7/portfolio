@@ -1,28 +1,22 @@
 <script lang="ts" setup>
+import { computed } from "vue";
+
 interface Props {
   index: number;
 }
 
 const props = defineProps<Props>();
 const emits = defineEmits(["add", "remove"]);
+
+const isFirst = computed(() => props.index === 0);
 </script>
 
 <template>
   <UButton
-    v-if="props.index === 0"
-    @click="emits('add')"
-    color="success"
+    @click="isFirst ? emits('add') : emits('remove', props.index)"
+    :color="isFirst ? 'success' : 'error'"
     variant="solid"
     size="md"
-    icon="i-lucide-plus"
-  />
-
-  <UButton
-    v-if="props.index > 0"
-    @click="emits('remove', props.index)"
-    color="error"
-    variant="solid"
-    size="md"
-    icon="i-lucide-minus"
+    :icon="isFirst ? 'i-lucide-plus' : 'i-lucide-minus'"
   />
 </template>
