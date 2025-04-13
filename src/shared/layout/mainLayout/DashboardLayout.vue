@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import Breadcrumb from "@shared/components/breadcrumb/Breadcrumb.vue";
+import { Breadcrumb, Sidebar } from "@shared/components";
 import { onBeforeUnmount, onMounted, ref, watch } from "vue";
-import Sidebar from "../sidebar/Sidebar.vue";
 
 const isSidebarOpen = ref(false);
 
