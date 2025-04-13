@@ -10,6 +10,7 @@ import {
   useHouseQuery,
   useUpdateHouseMutation,
 } from "@pages/housePlan/api/useHousePlanQuery";
+import { useHousePlanTitleСrumbStore } from "@pages/housePlan/store/housePlanTitleСrumbStore";
 import {
   AddRemoveButton,
   BaseModal,
@@ -27,6 +28,7 @@ const toast = useToast();
 const id = route.params.id as string | undefined;
 const isEditMode = !!id;
 const isVisibleModalDeletePlan = ref(false);
+const titleCrumb = useHousePlanTitleСrumbStore();
 
 const entrancesData = ref<EntranceModel[]>([
   {
@@ -60,6 +62,7 @@ const setBuildingEntrance = (item: EntranceModel[]) => {
 watchEffect(() => {
   if (houseData.value && isEditMode) {
     houseName.value = houseData.value.name;
+    titleCrumb.setHousePlanTitle(id, houseData.value.name);
     setBuildingEntrance(houseData.value.entrances ?? []);
   }
 });
@@ -163,7 +166,9 @@ function handleSubmit() {
 </script>
 
 <template>
-  <PageLayout :title="`План дома ${houseName}`">
+  <PageLayout
+    :title="isEditMode ? `План дома ${houseName}` : 'Создание плана дома'"
+  >
     <template #header-content>
       <div v-if="isEditMode">
         <UButton
@@ -254,7 +259,7 @@ function handleSubmit() {
   <BaseModal
     v-model:open="isVisibleModalDeletePlan"
     @on-action="handleSubmit"
-    :title="`Удалить план дома${houseName ? ' ' + houseName : ''}?`"
+    :title="`Удаление плана дома${houseName ? ' ' + houseName : ''}`"
     description="Это действие нельзя отменить"
     actionBtnName="Удалить"
   >

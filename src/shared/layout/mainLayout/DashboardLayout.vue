@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Breadcrumb from "@shared/components/breadcrumb/Breadcrumb.vue";
 import { onBeforeUnmount, onMounted, ref, watch } from "vue";
 import Sidebar from "../sidebar/Sidebar.vue";
 
@@ -54,17 +55,19 @@ onBeforeUnmount(() => {
       />
 
       <!-- Content Container -->
-      <div class="flex-1 w-full">
-        <main class="py-6 pl-14">
-          <router-view />
-        </main>
+      <div class="pl-14 py-4 flex-1 w-full">
+        <div class="flex flex-col gap-4 w-full h-full">
+          <Breadcrumb />
+          <main class="py-6">
+            <router-view />
+          </main>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-/* Иконки Lucide (или замени на другие) */
 .i-lucide-menu::before {
   content: "\2630";
 }

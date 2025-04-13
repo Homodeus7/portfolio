@@ -2,10 +2,15 @@ import { supabase } from "@app/api/supabase";
 import { LoginPage, RegisterPage } from "@pages/auth";
 import { HomePage } from "@pages/home";
 import { HousePlanPage } from "@pages/housePlan";
+import { useHousePlanTitleСrumbStore } from "@pages/housePlan/store/housePlanTitleСrumbStore";
 import { HousePlansPage } from "@pages/housePlans";
 import { NotFoundPage } from "@pages/notFound";
 import { AuthLayout, DashboardLayout } from "@shared/layout";
-import { createRouter, createWebHistory } from "vue-router";
+import {
+  createRouter,
+  createWebHistory,
+  RouteLocationNormalizedLoaded,
+} from "vue-router";
 
 const routes = [
   {
@@ -37,21 +42,35 @@ const routes = [
       },
       {
         path: "/house-plans",
-        name: "house-plans",
-        component: HousePlansPage,
-        meta: { requiresAuth: true },
-      },
-      {
-        path: "/house-plans/:id",
-        name: "house-plan",
-        component: HousePlanPage,
-        meta: { requiresAuth: true },
-      },
-      {
-        path: "/house-plans/create",
-        name: "create-house-plan",
-        component: HousePlanPage,
-        meta: { requiresAuth: true },
+        meta: { requiresAuth: true, breadcrumb: "Список планов домов" },
+        children: [
+          {
+            path: "",
+            name: "house-plans",
+            component: HousePlansPage,
+          },
+          {
+            path: "create",
+            name: "create-house-plan",
+            component: HousePlanPage,
+            meta: { breadcrumb: "Создание плана дома" },
+          },
+          {
+            path: ":id",
+            name: "house-plan",
+            component: HousePlanPage,
+            meta: {
+              breadcrumb: (route: RouteLocationNormalizedLoaded) => {
+                const { getHousePlanTitle } = useHousePlanTitleСrumbStore();
+                return (
+                  `Редактирование плана дома ${getHousePlanTitle(
+                    route.params.id as string
+                  )}` || "Загрузка..."
+                );
+              },
+            },
+          },
+        ],
       },
     ],
   },
