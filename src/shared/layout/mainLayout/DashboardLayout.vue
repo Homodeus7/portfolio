@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Breadcrumb, Sidebar } from "@shared/components";
+import { Breadcrumb, Sidebar } from "@shared/ui";
 import { onBeforeUnmount, onMounted, ref, watch } from "vue";
 
 const isSidebarOpen = ref(false);
