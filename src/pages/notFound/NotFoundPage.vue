@@ -23,7 +23,7 @@ const router = useRouter();
 </script>
 
 <template>
-  <PageLayout title="Главная">
+  <PageLayout>
     <template #content>
       <div class="w-full min-h-max flex items-center justify-center">
         <div class="flex flex-col gap-8 text-center">
