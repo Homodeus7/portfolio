@@ -50,33 +50,28 @@ watch(apartmentNumbers, (floors) => {
       </div>
 
       <!-- Сетка квартир -->
-      <div
+      <TransitionGroup
+        name="apt"
+        tag="div"
         class="grid gap-4 transition-all duration-500"
         :style="`grid-template-rows: repeat(${props.floors}, 40px); grid-template-columns: repeat(${props.premises}, 40px);`"
       >
-        <TransitionGroup
-          name="apt"
-          tag="div"
-          class="grid gap-4 transition-all duration-500"
-          :style="`grid-template-rows: repeat(${props.floors}, 40px); grid-template-columns: repeat(${props.premises}, 40px);`"
+        <template
+          v-for="(floor, floorIndex) in apartmentNumbers"
+          :key="`floor-${floorIndex}`"
         >
           <template
-            v-for="(floor, floorIndex) in apartmentNumbers"
-            :key="`floor-${floorIndex}`"
+            v-for="(apartment, unitIndex) in floor"
+            :key="`apt-${floorIndex}-${unitIndex}`"
           >
-            <template
-              v-for="(apartment, unitIndex) in floor"
-              :key="`apt-${floorIndex}-${unitIndex}`"
+            <div
+              class="bg-[#41b883] w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-sm"
             >
-              <div
-                class="bg-[#41b883] w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-sm"
-              >
-                {{ apartment }}
-              </div>
-            </template>
+              {{ apartment }}
+            </div>
           </template>
-        </TransitionGroup>
-      </div>
+        </template>
+      </TransitionGroup>
     </div>
 
     <!-- Название подъезда -->
