@@ -33,9 +33,9 @@ const titleCrumb = useHousePlanTitleСrumbStore();
 const entrancesData = ref<EntranceModel[]>([
   {
     name: "",
-    floors: 0,
-    premises: 0,
-    firstApartmentNumber: 0,
+    floors: 1,
+    premises: 1,
+    firstApartmentNumber: 1,
     lastApartmentNumber: 0,
   },
 ]);
@@ -210,10 +210,18 @@ function handleSubmit() {
                 <UInput v-model="entrance.name" state="solid" color="primary" />
               </div>
               <div class="w-[170px]">
-                <CalculationInput v-model="entrance.floors" />
+                <CalculationInput
+                  v-model="entrance.floors"
+                  :min="1"
+                  :max="20"
+                />
               </div>
               <div class="w-[170px]">
-                <CalculationInput v-model="entrance.premises" />
+                <CalculationInput
+                  v-model="entrance.premises"
+                  :min="1"
+                  :max="20"
+                />
               </div>
               <div class="w-[100px]">
                 <div class="flex items-center gap-4">

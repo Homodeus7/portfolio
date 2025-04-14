@@ -19,9 +19,9 @@ export const addEntrance = (
 
   const newEntrance: EntranceModel = {
     name: "",
-    floors: 0,
-    premises: 0,
-    firstApartmentNumber: 0,
+    floors: 1,
+    premises: 1,
+    firstApartmentNumber: 1,
     lastApartmentNumber: 0,
   };
 
