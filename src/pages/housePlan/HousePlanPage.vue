@@ -9,7 +9,7 @@ import {
   useDeleteHouseMutation,
   useHouseQuery,
   useUpdateHouseMutation,
-} from "@pages/housePlan/api/useHousePlanQuery";
+} from "@pages/housePlan/model/useHousePlanQuery";
 import { useHousePlanTitleСrumbStore } from "@pages/housePlan/store/housePlanTitleСrumbStore";
 import {
   AddRemoveButton,

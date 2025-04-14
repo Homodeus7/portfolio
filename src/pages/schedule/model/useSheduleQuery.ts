@@ -6,7 +6,6 @@ import {
   useQuery,
   useQueryClient,
 } from "@tanstack/vue-query";
-
 import { useScedule } from "./useShedule";
 
 export function useSceduleQuery(id: string, enabled: boolean) {

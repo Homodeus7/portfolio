@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { FormSubmitEvent } from "@nuxt/ui";
-import { useSignUpMutation } from "@pages/auth/api/useAuthQuery";
+import { useSignUpMutation } from "@pages/auth/model/useAuthQuery";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
-import { authSchema, AuthSchema } from "./schema/authSchema";
+import { authSchema, AuthSchema } from "./model/authSchema";
+import AuthForm from "./ui/AuthForm.vue";
 
 const state = reactive<Partial<AuthSchema>>({
   email: undefined,
@@ -39,30 +40,14 @@ async function onSubmit(event: FormSubmitEvent<AuthSchema>) {
 </script>
 
 <template>
-  <UForm
+  <AuthForm
     :schema="authSchema"
     :state="state"
-    class="space-y-4"
+    :loading="isPending"
+    button-text="Зарегистрироваться"
+    redirect-text="Уже есть аккаунт?"
+    redirect-link="/login"
+    redirect-link-text="Войти"
     @submit="onSubmit"
-  >
-    <UFormField label="Email" name="email">
-      <UInput v-model="state.email" />
-    </UFormField>
-
-    <UFormField label="Пароль" name="password">
-      <UInput v-model="state.password" type="password" />
-    </UFormField>
-
-    <UButton type="submit" :loading="isPending"> Зарегистрироваться </UButton>
-
-    <p class="text-sm text-gray-500">
-      Уже есть аккаунт?
-      <RouterLink
-        to="/login"
-        class="text-primary underline hover:text-primary-600"
-      >
-        Войти
-      </RouterLink>
-    </p>
-  </UForm>
+  />
 </template>

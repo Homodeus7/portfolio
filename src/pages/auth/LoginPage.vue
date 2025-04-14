@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { useUserStore } from "@features/user/store/userStore";
 import type { FormSubmitEvent } from "@nuxt/ui";
-import { useSignInMutation } from "@pages/auth/api/useAuthQuery";
+import { useSignInMutation } from "@pages/auth/model/useAuthQuery";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
-import { authSchema, AuthSchema } from "./schema/authSchema";
+import { authSchema, AuthSchema } from "./model/authSchema";
+import AuthForm from "./ui/AuthForm.vue";
 
 const state = reactive<Partial<AuthSchema>>({
   email: undefined,
@@ -45,30 +46,14 @@ async function onSubmit(event: FormSubmitEvent<AuthSchema>) {
 </script>
 
 <template>
-  <UForm
+  <AuthForm
     :schema="authSchema"
     :state="state"
-    class="space-y-4"
+    :loading="isPending"
+    button-text="Войти"
+    redirect-text="Нет аккаунта?"
+    redirect-link="/register"
+    redirect-link-text="Зарегистрироваться"
     @submit="onSubmit"
-  >
-    <UFormField label="Email" name="email">
-      <UInput v-model="state.email" />
-    </UFormField>
-
-    <UFormField label="Пароль" name="password">
-      <UInput v-model="state.password" type="password" />
-    </UFormField>
-
-    <UButton type="submit" :loading="isPending"> Войти </UButton>
-
-    <p class="text-sm text-gray-500">
-      Нет аккаунта?
-      <RouterLink
-        to="/register"
-        class="text-primary underline hover:text-primary-600"
-      >
-        Зарегистрироваться
-      </RouterLink>
-    </p>
-  </UForm>
+  />
 </template>

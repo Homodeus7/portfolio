@@ -1,4 +1,4 @@
-import { useHousePlans } from "@pages/housePlans/api/useHousePlans";
+import { useHousePlans } from "@pages/housePlans/model/useHousePlans";
 import { keepPreviousData, useQuery } from "@tanstack/vue-query";
 import { Ref } from "vue";
 
