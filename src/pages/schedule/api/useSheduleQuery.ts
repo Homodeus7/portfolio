@@ -9,17 +9,17 @@ import {
 
 import { useScedule } from "./useShedule";
 
-export function useHouseQuery(id: string, enabled: boolean) {
+export function useSceduleQuery(id: string, enabled: boolean) {
   const { getScedule } = useScedule();
   return useQuery({
-    queryKey: ["schedules", id],
+    queryKey: ["schedule", id],
     queryFn: () => getScedule(id),
     enabled: !!id && enabled,
     placeholderData: keepPreviousData,
   });
 }
 
-export function useCreateHouseMutation() {
+export function useCreateSceduleMutation() {
   const { createScedule } = useScedule();
   const queryClient = useQueryClient();
   return useMutation({
@@ -30,7 +30,7 @@ export function useCreateHouseMutation() {
   });
 }
 
-export function useUpdateHouseMutation() {
+export function useUpdateSceduleMutation() {
   const { updateScedule } = useScedule();
   const queryClient = useQueryClient();
   return useMutation({
@@ -42,13 +42,12 @@ export function useUpdateHouseMutation() {
       updates: Partial<ScheduleModel>;
     }) => updateScedule(id, updates),
     onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({ queryKey: ["schedules"] });
       queryClient.invalidateQueries({ queryKey: ["schedule", variables.id] });
     },
   });
 }
 
-export function useDeleteHouseMutation() {
+export function useDeleteSceduleMutation() {
   const { deleteScedule } = useScedule();
   const queryClient = useQueryClient();
   return useMutation({

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import PageLayout from "@shared/layout/pageLayout/PageLayout.vue";
+import PageLayout from "@shared/layouts/pageLayout/PageLayout.vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();

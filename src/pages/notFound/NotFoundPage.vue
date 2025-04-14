@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useUserStore } from "@features/user/store/userStore";
-import PageLayout from "@shared/layout/pageLayout/PageLayout.vue";
+import PageLayout from "@shared/layouts/pageLayout/PageLayout.vue";
 import { onMounted, watch } from "vue";
 import { useRouter } from "vue-router";
 

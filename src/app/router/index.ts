@@ -5,7 +5,7 @@ import { HousePlanPage } from "@pages/housePlan";
 import { useHousePlanTitleСrumbStore } from "@pages/housePlan/store/housePlanTitleСrumbStore";
 import { HousePlansPage } from "@pages/housePlans";
 import { NotFoundPage } from "@pages/notFound";
-import { AuthLayout, DashboardLayout } from "@shared/layout";
+import { AuthLayout, DashboardLayout } from "@shared/layouts";
 import {
   createRouter,
   createWebHistory,

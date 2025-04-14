@@ -11,7 +11,7 @@ import { useHousePlan } from "./useHousePlan";
 export function useHouseQuery(id: string, enabled: boolean) {
   const { getHousePlan } = useHousePlan();
   return useQuery({
-    queryKey: ["house", id],
+    queryKey: ["house-plan", id],
     queryFn: () => getHousePlan(id),
     enabled: !!id && enabled,
     placeholderData: keepPreviousData,
@@ -24,7 +24,7 @@ export function useCreateHouseMutation() {
   return useMutation({
     mutationFn: createHousePlan,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["houses"] });
+      queryClient.invalidateQueries({ queryKey: ["house-plans"] });
     },
   });
 }
@@ -41,8 +41,8 @@ export function useUpdateHouseMutation() {
       updates: Partial<HousePlanModel>;
     }) => updateHousePlan(id, updates),
     onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({ queryKey: ["houses"] });
-      queryClient.invalidateQueries({ queryKey: ["house", variables.id] });
+      queryClient.invalidateQueries({ queryKey: ["house-plans"] });
+      queryClient.invalidateQueries({ queryKey: ["house-plan", variables.id] });
     },
   });
 }
@@ -53,7 +53,7 @@ export function useDeleteHouseMutation() {
   return useMutation({
     mutationFn: ({ id }: { id: string }) => deleteHousePlan(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["houses"] });
+      queryClient.invalidateQueries({ queryKey: ["house-plans"] });
     },
   });
 }

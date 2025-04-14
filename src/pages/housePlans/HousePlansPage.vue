@@ -2,7 +2,7 @@
 import { useHousesQuery } from "@pages/housePlans/api/useHousePlansQuery";
 import { columns } from "@pages/housePlans/table/columns";
 import { BaseTable } from "@shared/components";
-import PageLayout from "@shared/layout/pageLayout/PageLayout.vue";
+import PageLayout from "@shared/layouts/pageLayout/PageLayout.vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
