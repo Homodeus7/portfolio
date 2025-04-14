@@ -1,5 +1,5 @@
 import { supabase } from "@app/api/supabase";
-import type { HousePlanModel } from "@pages/housePlan/types/HousePlanModel";
+import type { HousePlanModel } from "@pages/housePlan/model/HousePlanModel";
 
 export function useHousePlan() {
   const getHousePlan = async (id: string) => {

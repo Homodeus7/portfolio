@@ -1,4 +1,4 @@
-import { EntranceModel } from "../types/EntrancesModel";
+import { EntranceModel } from "../model/EntrancesModel";
 
 /**
  * Добавление нового подъезда в массив подъездов.

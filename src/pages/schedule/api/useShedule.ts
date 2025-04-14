@@ -1,5 +1,5 @@
 import { supabase } from "@app/api/supabase";
-import { ScheduleModel } from "../types/types";
+import { ScheduleModel } from "../model/ScheduleModel";
 
 export function useScedule() {
   const getScedule = async (id: string) => {

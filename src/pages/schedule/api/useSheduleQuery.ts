@@ -1,4 +1,4 @@
-import type { ScheduleModel } from "@pages/schedule/types/types";
+import type { ScheduleModel } from "@pages/schedule/model/ScheduleModel";
 
 import {
   keepPreviousData,

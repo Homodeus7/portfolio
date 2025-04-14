@@ -1,4 +1,4 @@
-import type { HousePlanModel } from "@pages/housePlan/types/HousePlanModel";
+import type { HousePlanModel } from "@pages/housePlan/model/HousePlanModel";
 
 import {
   keepPreviousData,

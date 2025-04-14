@@ -1,4 +1,4 @@
-import { EntranceModel } from "@features/entrances/types/EntrancesModel";
+import { EntranceModel } from "@features/entrances/model/EntrancesModel";
 
 export interface HousePlanModel {
   id: string;

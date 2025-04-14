@@ -3,7 +3,7 @@ import {
   addEntrance,
   removeEntrance,
 } from "@features/entrances/composables/entrancesUtils";
-import type { EntranceModel } from "@features/entrances/types/EntrancesModel";
+import type { EntranceModel } from "@features/entrances/model/EntrancesModel";
 import {
   useCreateHouseMutation,
   useDeleteHouseMutation,
