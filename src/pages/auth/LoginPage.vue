@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useUserStore } from "@features/user/store/userStore";
 import type { FormSubmitEvent } from "@nuxt/ui";
 import { useSignInMutation } from "@pages/auth/api/useAuthQuery";
 import { reactive } from "vue";
@@ -26,7 +27,9 @@ const state = reactive<Partial<Schema>>({
   password: undefined,
 });
 
-const { mutate: login, isPending } = useSignInMutation();
+const userStore = useUserStore();
+
+const { mutate: login, isPending, data: userData } = useSignInMutation();
 const toast = useToast();
 const router = useRouter();
 
@@ -41,6 +44,9 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
           color: "success",
         });
         router.push("/");
+        if (userData.value?.user) {
+          userStore.setUser(userData.value?.user);
+        }
       },
       onError: (err: any) => {
         toast.add({

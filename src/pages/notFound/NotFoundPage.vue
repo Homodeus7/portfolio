@@ -1,25 +1,32 @@
 <script setup lang="ts">
-import { supabase } from "@app/api/supabase";
+import { useUserStore } from "@features/user/store/userStore";
 import PageLayout from "@shared/layout/pageLayout/PageLayout.vue";
+import { onMounted, watch } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
+const userStore = useUserStore();
 
-(async () => {
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  const isAuthenticated = !!session?.user;
-
+const redirect = () => {
   setTimeout(() => {
-    if (isAuthenticated) {
+    if (userStore.isAuthenticated) {
       router.replace({ name: "home" });
     } else {
       router.replace({ name: "login" });
     }
   }, 2000);
-})();
+};
+
+onMounted(() => {
+  redirect();
+});
+
+watch(
+  () => userStore.isAuthenticated,
+  () => {
+    redirect();
+  }
+);
 </script>
 
 <template>
