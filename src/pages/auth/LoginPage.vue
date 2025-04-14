@@ -4,25 +4,9 @@ import type { FormSubmitEvent } from "@nuxt/ui";
 import { useSignInMutation } from "@pages/auth/api/useAuthQuery";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
+import { authSchema, AuthSchema } from "./schema/authSchema";
 
-import * as z from "zod";
-
-const passwordRequirements = z
-  .string()
-  .min(8, "Минимум 8 символов")
-  .regex(/[a-z]/, "Минимум одна строчная буква")
-  .regex(/[A-Z]/, "Минимум одна заглавная буква")
-  .regex(/[0-9]/, "Минимум одна цифра")
-  .regex(/[^A-Za-z0-9]/, "Минимум один специальный символ");
-
-const schema = z.object({
-  email: z.string().email("Невалидный email"),
-  password: passwordRequirements,
-});
-
-type Schema = z.output<typeof schema>;
-
-const state = reactive<Partial<Schema>>({
+const state = reactive<Partial<AuthSchema>>({
   email: undefined,
   password: undefined,
 });
@@ -33,7 +17,7 @@ const { mutate: login, isPending, data: userData } = useSignInMutation();
 const toast = useToast();
 const router = useRouter();
 
-async function onSubmit(event: FormSubmitEvent<Schema>) {
+async function onSubmit(event: FormSubmitEvent<AuthSchema>) {
   login(
     { email: event.data.email, password: event.data.password },
     {
@@ -61,7 +45,12 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 </script>
 
 <template>
-  <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
+  <UForm
+    :schema="authSchema"
+    :state="state"
+    class="space-y-4"
+    @submit="onSubmit"
+  >
     <UFormField label="Email" name="email">
       <UInput v-model="state.email" />
     </UFormField>
