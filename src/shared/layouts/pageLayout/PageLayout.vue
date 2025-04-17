@@ -11,14 +11,20 @@ const props = defineProps<Props>();
     <!-- Заголовок -->
     <header
       v-if="props.title"
-      class="mb-4 flex flex-wrap gap-x-5 gap-y-2 justify-between items-center"
+      class="flex flex-col gap-5 pb-5 border-b border-b-white/20"
     >
-      <h2 class="text-2xl font-bold">
-        <slot name="title" />
-        {{ props.title }}
-      </h2>
-      <!-- Слот с контентом -->
-      <slot name="header-content" />
+      <div
+        lass="mb-4 flex flex-wrap gap-x-5 gap-y-2 justify-between items-center"
+      >
+        <h2 class="text-2xl font-bold">
+          <slot name="title" />
+          {{ props.title }}
+        </h2>
+        <!-- Слот с кнопками -->
+        <slot name="header-action" />
+      </div>
+      <!-- Слот с описанием -->
+      <slot name="header-desc" />
     </header>
 
     <!-- Контент -->

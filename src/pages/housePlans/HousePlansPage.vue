@@ -18,7 +18,7 @@ const linkToCreate = () => {
 
 <template>
   <PageLayout title="Планы домов">
-    <template #header-content>
+    <template #header-action>
       <UButton color="success" variant="subtle" @click="linkToCreate">
         Создать план
       </UButton>

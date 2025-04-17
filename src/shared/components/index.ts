@@ -2,3 +2,4 @@ export { default as AddRemoveButton } from "./addRemoveButton/AddRemoveButton.vu
 export { default as BaseModal } from "./baseModal/BaseModal.vue";
 export { default as BaseTable } from "./baseTable/BaseTable.vue";
 export { default as CalculationInput } from "./calculationInput/CalculationInput.vue";
+export { default as CodePreview } from "./codePreview/CodePreview.vue";

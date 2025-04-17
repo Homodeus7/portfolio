@@ -169,7 +169,7 @@ function handleSubmit() {
   <PageLayout
     :title="isEditMode ? `План дома ${houseName}` : 'Создание плана дома'"
   >
-    <template #header-content>
+    <template #header-action>
       <div v-if="isEditMode">
         <UButton
           color="error"

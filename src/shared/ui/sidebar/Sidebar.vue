@@ -24,10 +24,11 @@ const items = ref<NavigationMenuItem[][]>([
           icon: "i-lucide-cloud-download",
         },
         {
-          label: "Icons",
+          label: "House plan documentation",
           icon: "i-lucide-smile",
           description:
             "You have nothing to do, @nuxt/icon will handle it automatically.",
+          to: "/house-plan-doc",
         },
         {
           label: "Colors",
