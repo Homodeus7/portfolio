@@ -1,6 +1,6 @@
 import { supabase } from "@app/api/supabase";
 import { LoginPage, RegisterPage } from "@pages/auth";
-import { HousePlanEditorDoc } from "@pages/documentation";
+import { HousePlanDocsPage } from "@pages/documentation";
 import { HomePage } from "@pages/home";
 import { HousePlanPage } from "@pages/housePlan";
 import { useHousePlanTitleСrumbStore } from "@pages/housePlan/store/housePlanTitleСrumbStore";
@@ -76,7 +76,7 @@ const routes = [
       {
         path: "/house-plan-doc",
         name: "house-plan-documentation",
-        component: HousePlanEditorDoc,
+        component: HousePlanDocsPage,
         meta: { requiresAuth: true },
       },
     ],
